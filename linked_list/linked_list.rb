@@ -30,9 +30,28 @@ class LinkedList
       @tail.next = node
       @tail = node
     end
+
+    node
   end
 
   def pop
+  end
+
+  def unshift(value)
+    node = Node.new(value, head)
+
+    if head.nil?
+      @head = node
+      @tail = node
+    else
+      @head = node
+    end
+
+    node
+  end
+
+  def shift
+
   end
 
   def print
