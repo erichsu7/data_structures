@@ -81,16 +81,16 @@ class LinkedList
     node.value
   end
 
-  def to_s
+  def print
+    values = []
     current_node = head
 
     until current_node.nil?
-      print current_node.value
-      print " "
+      values << current_node.value
       current_node = current_node.next
     end
 
-    nil
+    values.join(" ")
   end
 
   def delete(value)
@@ -117,5 +117,31 @@ class LinkedList
     end
 
     current_node.value
+  end
+
+  def reverse
+    length = self.length
+
+    if length == 0
+      return nil
+    elsif length == 1
+      return self.print
+    else
+      prev_node = nil
+      current_node = head
+
+      while current_node
+        temp_node = current_node.next
+
+        current_node.next = prev_node
+        prev_node = current_node
+        current_node = temp_node
+      end
+
+      @head.next = nil
+      @head, @tail = @tail, @head
+
+      self.print
+    end
   end
 end
