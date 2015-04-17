@@ -8,6 +8,18 @@ class LinkedList
     @tail = nil
   end
 
+  def length
+    count = 0
+
+    current_node = head
+    until current_node.nil?
+      count += 1
+      current_node = current_node.next
+    end
+
+    count
+  end
+
   def push(value)
     node = Node.new(value, nil)
 
@@ -20,8 +32,11 @@ class LinkedList
     end
   end
 
+  def pop
+  end
+
   def print
-    current_node = @head
+    current_node = head
 
     until current_node.nil?
       puts current_node.value
