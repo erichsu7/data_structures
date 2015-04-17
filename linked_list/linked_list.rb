@@ -34,9 +34,6 @@ class LinkedList
     node.value
   end
 
-  def pop
-  end
-
   def unshift(value)
     node = Node.new(value, head)
 
@@ -59,11 +56,12 @@ class LinkedList
     node.value
   end
 
-  def print
+  def to_s
     current_node = head
 
     until current_node.nil?
-      p current_node.value
+      print current_node.value
+      print " "
       current_node = current_node.next
     end
 
