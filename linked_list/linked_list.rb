@@ -69,4 +69,30 @@ class LinkedList
 
     nil
   end
+
+  def delete(value)
+    if head.nil?
+      return nil
+    end
+
+    current_node = head
+    prev_node = nil
+
+    until current_node.nil? || current_node.value == value
+      prev_node = current_node
+      current_node = current_node.next
+    end
+
+    if current_node == head
+      @head = current_node.next
+    else
+      prev_node.next = current_node.next
+    end
+
+    if current_node == tail
+      @tail = prev_node
+    end
+
+    current_node.value
+  end
 end
