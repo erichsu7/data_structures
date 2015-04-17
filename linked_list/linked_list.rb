@@ -34,6 +34,31 @@ class LinkedList
     node.value
   end
 
+  def pop
+    popped_node = tail
+    prev_node = nil
+    current_node = head
+    length = self.length
+
+    if length == 1
+      @head = nil
+      @tail = nil
+      return popped_node.value
+    elsif length == 0
+      return nil
+    else
+      while current_node.next
+        prev_node = current_node
+        current_node = current_node.next
+      end
+
+      @tail = prev_node
+      prev_node.next = nil
+
+      popped_node.value
+    end
+  end
+
   def unshift(value)
     node = Node.new(value, head)
 
