@@ -31,7 +31,7 @@ class LinkedList
       @tail = node
     end
 
-    node
+    node.value
   end
 
   def pop
@@ -47,19 +47,26 @@ class LinkedList
       @head = node
     end
 
-    node
+    node.value
   end
 
   def shift
+    if head
+      node = @head
+      @head = node.next
+    end
 
+    node.value
   end
 
   def print
     current_node = head
 
     until current_node.nil?
-      puts current_node.value
+      p current_node.value
       current_node = current_node.next
     end
+
+    nil
   end
 end
