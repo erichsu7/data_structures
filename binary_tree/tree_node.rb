@@ -8,6 +8,6 @@ class TreeNode
   end
 
   def full?
-    left && right
+    !!left && !!right
   end
 end

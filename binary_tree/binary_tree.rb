@@ -29,18 +29,18 @@ class BinaryTree
     #     return false
     #   end
     # end
-    current_node = root
-    until current_node.nil?
-      if !current_node.left
-        current_node.left = TreeNode.new(value)
+    queue = [root]
+    until queue.empty?
+      node = queue.shift
+      if !node.left
+        node.left = TreeNode.new(value)
         return value
-      elsif !current_node.right
-        current_node.right = TreeNode.new(value)
+      elsif !node.right
+        node.right = TreeNode.new(value)
         return value
-      elsif current_node.left.full?
-        current_node = current_node.right
       else
-        current_node = current_node.left
+        node.left && queue << node.left
+        node.right && queue << node.right
       end
     end
   end
@@ -84,10 +84,16 @@ class BinaryTree
     return if node.nil?
     traverse_inorder(node.left)
     puts node.value
-    traverse_postorder(node.right)
+    traverse_inorder(node.right)
   end
 
   def traverse_breadth_first
-
+    queue = [root]
+    until queue.empty?
+      node = queue.shift
+      puts node.value
+      node.left && queue << node.left
+      node.right && queue << node.right
+    end
   end
 end
