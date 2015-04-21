@@ -6,4 +6,8 @@ class TreeNode
     @left = left
     @right = right
   end
+
+  def full?
+    left && right
+  end
 end
