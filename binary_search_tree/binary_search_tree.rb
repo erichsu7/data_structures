@@ -30,4 +30,21 @@ class BinarySearchTree < BinaryTree
     end
   end
 
+  def includes?(value)
+    current_node = root
+
+    until current_node.nil?
+      case value <=> current_node.value
+      when -1
+        current_node = current_node.left
+      when 0
+        return true
+      when 1
+        current_node = current_node.right
+      end
+    end
+
+    false
+  end
+
 end
