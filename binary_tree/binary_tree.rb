@@ -31,4 +31,25 @@ class BinaryTree
     end
   end
 
+  def print_tree #a breadth-first-like traversal
+    queue = [root]
+    children = []
+
+    until queue.empty?
+      puts queue.map { |node| node.value }.join(" ")
+
+      queue_length = queue.length
+      queue_length.times do |i|
+        node = queue[i]
+        node.left && children << node.left
+        node.right && children << node.right
+      end
+
+      queue = children
+      children = []
+    end
+
+    nil
+  end
+
 end
