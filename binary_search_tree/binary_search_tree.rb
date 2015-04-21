@@ -47,4 +47,28 @@ class BinarySearchTree < BinaryTree
     false
   end
 
+  def min
+    prev_node = root
+    current_node = prev_node.left
+
+    until current_node.nil?
+      prev_node = current_node
+      current_node = current_node.left
+    end
+
+    prev_node.value
+  end
+
+  def max
+    prev_node = root
+    current_node = prev_node.right
+
+    until current_node.nil?
+      prev_node = current_node
+      current_node = current_node.right
+    end
+
+    prev_node.value
+  end
+
 end
