@@ -1,25 +1,34 @@
-class BinaryTree
-  attr_accessor :value, :left, :right
+require_relative "tree_node"
 
-  def initialize(value = nil, left = nil, right = nil)
-    @value = value
-    @left = left
-    @right = right
+class BinaryTree
+  attr_accessor :root
+
+  def initialize(root = nil)
+    @root = root
   end
 
   def insert(value)
-    current_node = self
+    unless root
+      self.root = TreeNode.new(value)
+      return value
+    end
+
+    current_node = root
     until current_node.nil?
-      if value < current_node.value
-        if current_node.left
-          current_node = current_node.left
-        else
-          current_node.left = BinaryTree.new(value)
-        end
+      if value < current_node.value && current_node.left.nil?
+        current_node.left = TreeNode.new(value)
+        return value
+      elsif value > current_node.value && current_node.right.nil?
+        current_node.right = TreeNode.new(value)
+        return value
+      elsif value < current_node.value
+        current_node = current_node.left
       elsif value > current_node.value
+        current_node = current_node.right
       else
-        return
+        return false
       end
     end
   end
+
 end
