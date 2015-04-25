@@ -19,29 +19,21 @@ class LinkedList
   end
 
   def pop
-    popped_node = tail
-    prev_node = nil
-    current_node = head
-    length = self.length
+    #O(n) for singly linked list, O(1) for doubly linked list because tail has reference to last element
+    return false if head.next == tail
 
-    if length == 1
-      @head = nil
-      @tail = nil
-      return popped_node.value
-    elsif length == 0
-      return nil
-    else
-      while current_node.next
-        prev_node = current_node
-        current_node = current_node.next
-      end
+    current_node = head.next
 
-      @tail = prev_node
-      prev_node.next = nil
-
-      self.length -= 1
-      popped_node.value
+    until current_node.next == tail
+      current_node = current_node.next
     end
+
+    deleted_value = current_node.value
+    current_node.value = nil
+    current_node.next = nil
+    self.tail = current_node
+
+    deleted_value
   end
 
   def unshift(value)
