@@ -1,10 +1,11 @@
 require_relative "tree_node"
 
 class BinaryTree
-  attr_accessor :root
+  attr_accessor :root, :count
 
   def initialize(root = nil)
     @root = root
+    @count = 0
   end
 
   def insert(value)
@@ -29,7 +30,7 @@ class BinaryTree
     end
   end
 
-  def print_tree #a breadth-first-like traversal
+  def draw #a breadth-first-like traversal
     queue = [root]
     children = []
 

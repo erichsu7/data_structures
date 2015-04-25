@@ -8,6 +8,10 @@ class TreeNode
   end
 
   def full?
-    !!left && !!right
+    !left.nil? && !right.nil?
+  end
+
+  def leaf?
+    left.nil? && right.nil?
   end
 end

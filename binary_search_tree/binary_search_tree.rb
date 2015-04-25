@@ -47,28 +47,18 @@ class BinarySearchTree < BinaryTree
     false
   end
 
-  def min
-    prev_node = root
-    current_node = prev_node.left
+  def min(node = root)
+    return if root.nil?
+    return node.value if node.leaf?
 
-    until current_node.nil?
-      prev_node = current_node
-      current_node = current_node.left
-    end
-
-    prev_node.value
+    min(node.left)
   end
 
-  def max
-    prev_node = root
-    current_node = prev_node.right
+  def max(node = root)
+    return if root.nil?
+    return node.value if node.leaf?
 
-    until current_node.nil?
-      prev_node = current_node
-      current_node = current_node.right
-    end
-
-    prev_node.value
+    max(node.right)
   end
 
 end
