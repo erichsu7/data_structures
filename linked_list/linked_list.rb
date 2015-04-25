@@ -20,7 +20,7 @@ class LinkedList
 
   def pop
     #O(n) for singly linked list, O(1) for doubly linked list because tail has reference to last element
-    return false if head.next == tail
+    return if head.next == tail
 
     current_node = head.next
 
@@ -45,7 +45,7 @@ class LinkedList
   end
 
   def shift
-    return false if head.next == tail
+    return if head.next == tail
 
     shifted_value = @head.next.value
     @head.next = head.next.next

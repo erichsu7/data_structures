@@ -1,12 +1,13 @@
 require_relative "node"
 
 class DoublyLinkedList
-  attr_accessor :head, :tail
+  attr_accessor :head, :tail, :length
 
   def initialize
     @head = Node.new
     @tail = Node.new(nil, nil, head)
     @head.next = tail
+    @length = 0
   end
 
   def push(value)
@@ -14,10 +15,19 @@ class DoublyLinkedList
     tail.prev.next = node
     tail.prev = node
 
+    self.length += 1
     value
   end
 
   def pop
+    return if length == 0
+
+    popped_value = tail.prev.value
+    tail.prev = tail.prev.prev
+    tail.prev.next = tail
+
+    self.length -= 1
+    popped_value
   end
 
   def unshift(value)
