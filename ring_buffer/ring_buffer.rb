@@ -1,7 +1,7 @@
 class RingBuffer
   attr_accessor :size, :array, :count, :front_idx, :rear_idx
 
-  def initialize(size = 4)
+  def initialize(size = 8)
     @size = size
     @array = Array.new(size)
     @count = 0
@@ -25,6 +25,7 @@ class RingBuffer
     array[front_idx] = nil
     self.front_idx = (front_idx + 1) % size
     self.count -= 1
+    resize_down if count <= size / 4
     shifted_value
   end
 
@@ -46,12 +47,26 @@ class RingBuffer
       larger_array[j] = array[i]
 
       self.front_idx = 0
-      self.rear_idx = size - 1
+      self.rear_idx = count - 1
       self.size = size * 2
       self.array = larger_array
     end
 
     def resize_down
-    end
+      smaller_array = Array.new(size / 2)
 
+      i = front_idx
+      j = 0
+      until i == rear_idx
+        smaller_array[j] = array[i]
+        i = (i + 1) % size
+        j += 1
+      end
+      smaller_array[j] = array[i]
+
+      self.front_idx = 0
+      self.rear_idx = count - 1
+      self.size = size / 2
+      self.array = smaller_array
+    end
 end
