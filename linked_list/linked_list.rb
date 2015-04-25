@@ -9,6 +9,22 @@ class LinkedList
     @length = 0
   end
 
+  def first
+    head.next.value
+  end
+
+  def last
+    return if length == 0
+
+    current_node = head.next
+
+    until current_node.next == tail
+      current_node = current_node.next
+    end
+
+    current_node.value
+  end
+
   def push(value)
     @tail.value = value
     @tail.next = Node.new

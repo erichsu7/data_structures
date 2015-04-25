@@ -10,6 +10,14 @@ class DoublyLinkedList
     @length = 0
   end
 
+  def first
+    head.next.value
+  end
+
+  def last
+    tail.prev.value
+  end
+
   def push(value)
     node = Node.new(value, tail, tail.prev)
     tail.prev.next = node
