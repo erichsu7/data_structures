@@ -10,18 +10,14 @@ class LinkedList
   end
 
   def push(value)
-    node = Node.new(value, nil)
+    @tail.value = value
+    @tail.next = Node.new
 
-    if head.nil?
-      @head = node
-      @tail = node
-    else
-      @tail.next = node
-      @tail = node
-    end
+    @head.next = @tail if head.next.nil?
+    @tail = tail.next
 
-    self.length +=1
-    node.value
+    self.length += 1
+    value
   end
 
   def pop
@@ -74,16 +70,15 @@ class LinkedList
     node.value
   end
 
-  def print
-    values = []
-    current_node = head
+  def print_values
+    current_node = head.next
 
     until current_node.nil?
-      values << current_node.value
+      print current_node.value.to_s + " "
       current_node = current_node.next
     end
 
-    values.join(" ")
+    nil
   end
 
   def delete(value)
