@@ -38,40 +38,46 @@ class BinarySearchTree < BinaryTree
   end
 
   def min(node = root)
-    return if root.nil?
+    return if node.nil?
     return node.value if node.leaf?
 
     min(node.left)
   end
 
   def max(node = root)
-    return if root.nil?
+    return if node.nil?
     return node.value if node.leaf?
 
     max(node.right)
   end
 
   def min_node(node = root)
-    return if root.nil?
+    return if node.nil?
     return node if node.leaf?
 
-    min(node.left)
+    min_node(node.left)
   end
 
   def max_node(node = root)
-    return if root.nil?
+    return if node.nil?
     return node if node.leaf?
 
-    max(node.right)
+    max_node(node.right)
   end
 
   def remove(value, node = root)
+    removed_node = remove_helper(value, node)
+
+    removed_node.nil? ? nil : value
+  end
+
+  def remove_helper(value, node = root)
     return if node.nil?
 
     if value < node.value
-      node.left = remove(value, node.left)
+      node.left = remove_helper(value, node.left)
     elsif value > node.value
-      node.right = remove(value, node.right)
+      node.right = remove_helper(value, node.right)
     else #found the node
       if node.left.nil? #returns the right node (one child) or nil (no children)
         return node.right
@@ -79,16 +85,15 @@ class BinarySearchTree < BinaryTree
         return node.left
       else
         next_node = max_node(node.left)
+        puts "next_node: " + next_node.to_s
         node.value = next_node.value
-        remove(node.value, node.left)
+        node.left = remove_helper(node.value, node.left)
       end
     end
 
     return node
   end
 
-  def remove_helper(value, node = root)
 
-  end
 
 end

@@ -51,6 +51,10 @@ class BinaryTree
     nil
   end
 
+  def traverse
+    traverse_inorder
+  end
+
   def traverse_preorder(node = root)
     return if node.nil?
     puts node.value
