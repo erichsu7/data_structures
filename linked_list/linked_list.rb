@@ -101,29 +101,28 @@ class LinkedList
     false
   end
 
-  def reverse
+  def reverse!
     length = self.length
 
     if length == 0
       return nil
     elsif length == 1
-      return self.print
+      return self
     else
-      prev_node = nil
-      current_node = head
+      prev_node = head
+      current_node = head.next
 
-      while current_node
-        temp_node = current_node.next
-
+      until current_node.nil?
+        next_node = current_node.next
         current_node.next = prev_node
         prev_node = current_node
-        current_node = temp_node
+        current_node = next_node
       end
 
       @head.next = nil
       @head, @tail = @tail, @head
 
-      self.print
+      self
     end
   end
 end
