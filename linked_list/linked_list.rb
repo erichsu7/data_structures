@@ -33,31 +33,25 @@ class LinkedList
     current_node.next = nil
     self.tail = current_node
 
+    self.length -= 1
     deleted_value
   end
 
   def unshift(value)
-    node = Node.new(value, head)
-
-    if head.nil?
-      @head = node
-      @tail = node
-    else
-      @head = node
-    end
+    @head.next = Node.new(value, head.next)
 
     self.length += 1
-    node.value
+    value
   end
 
   def shift
-    if head
-      node = @head
-      @head = node.next
-    end
+    return false if head.next == tail
+
+    shifted_value = @head.next.value
+    @head.next = head.next.next
 
     self.length -= 1
-    node.value
+    shifted_value
   end
 
   def inspect
