@@ -90,7 +90,20 @@ class DoublyLinkedList
     false
   end
 
-  def insert_at
+  def insert_at(idx, value)
+    return if idx > length
+
+    current_node = head.next
+    idx.times do
+      current_node = current_node.next
+    end
+
+    node = Node.new(value, current_node, current_node.prev)
+    current_node.prev.next = node
+    current_node.prev = node
+
+    self.length += 1
+    value
   end
 
   def delete
