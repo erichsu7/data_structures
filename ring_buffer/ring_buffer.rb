@@ -19,6 +19,13 @@ class RingBuffer
   end
 
   def shift
+    return if count == 0
+
+    shifted_value = array[front_idx]
+    array[front_idx] = nil
+    self.front_idx = (front_idx + 1) % size
+    self.count -= 1
+    shifted_value
   end
 
   def inspect
