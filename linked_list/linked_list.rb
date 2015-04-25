@@ -4,14 +4,14 @@ class LinkedList
   attr_accessor :head, :tail
 
   def initialize
-    @head = nil
-    @tail = nil
+    @head = Node.new
+    @tail = Node.new
   end
 
   def length
     count = 0
 
-    current_node = head
+    current_node = head.next
     until current_node.nil?
       count += 1
       current_node = current_node.next
