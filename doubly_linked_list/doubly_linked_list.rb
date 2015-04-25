@@ -70,8 +70,24 @@ class DoublyLinkedList
     false
   end
 
-  def insert_before
+  def insert_before(value, new_value)
     return if length == 0
+
+    current_node = head.next
+    until current_node == tail
+      if current_node.value == value
+        node = Node.new(new_value, current_node, current_node.prev)
+        current_node.prev.next = node
+        current_node.prev = node
+
+        self.length += 1
+        return new_value
+      end
+
+      current_node = current_node.next
+    end
+
+    false
   end
 
   def insert_at
