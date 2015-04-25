@@ -106,7 +106,23 @@ class DoublyLinkedList
     value
   end
 
-  def delete
+  def delete(value)
+    return if length == 0
+
+    current_node = head.next
+    until current_node == tail
+      if current_node.value == value
+        current_node.prev.next = current_node.next
+        current_node.next.prev = current_node.prev
+
+        self.length -= 1
+        return value
+      end
+
+      current_node = current_node.next
+    end
+
+    false
   end
 
   def reverse!
