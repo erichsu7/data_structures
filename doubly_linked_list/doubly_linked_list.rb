@@ -126,6 +126,24 @@ class DoublyLinkedList
   end
 
   def reverse!
+    if length == 0
+      return
+    elsif length == 1
+      return self
+    else
+      current_node = head
+
+      until current_node.nil?
+        next_node = current_node.next
+        current_node.next, current_node.prev =
+          current_node.prev, current_node.next
+
+        current_node = next_node
+      end
+
+      @head, @tail = @tail, @head
+      self
+    end
   end
 
   def inspect
