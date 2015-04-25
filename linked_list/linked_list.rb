@@ -4,16 +4,14 @@ class LinkedList
   attr_accessor :head, :tail, :length
 
   def initialize
-    @head = Node.new
     @tail = Node.new
+    @head = Node.new(nil, tail)
     @length = 0
   end
 
   def push(value)
     @tail.value = value
     @tail.next = Node.new
-
-    @head.next = @tail if head.next.nil?
     @tail = tail.next
 
     self.length += 1
@@ -70,6 +68,18 @@ class LinkedList
     node.value
   end
 
+  def inspect
+    values = []
+    current_node = head.next
+
+    until current_node.nil?
+      values << current_node.value
+      current_node = current_node.next
+    end
+
+    values.join(" ")
+  end
+
   def print_values
     current_node = head.next
 
@@ -82,30 +92,27 @@ class LinkedList
   end
 
   def delete(value)
-    if head.nil?
-      return nil
-    end
+    return nil if head.next.nil? || value.nil?
 
-    current_node = head
-    prev_node = nil
+    current_node = head.next
+    until current_node.nil?
+      if current_node.value == value
+        current_node.value = current_node.next.value
+        if current_node.next == tail
+          current_node.next = nil
+          self.tail = current_node
+        else
+          current_node.next = current_node.next.next
+        end
 
-    until current_node.nil? || current_node.value == value
-      prev_node = current_node
+        self.length -= 1
+        return value
+      end
+
       current_node = current_node.next
     end
 
-    if current_node == head
-      @head = current_node.next
-    else
-      prev_node.next = current_node.next
-    end
-
-    if current_node == tail
-      @tail = prev_node
-    end
-
-    self.length -= 1
-    current_node.value
+    false
   end
 
   def reverse
