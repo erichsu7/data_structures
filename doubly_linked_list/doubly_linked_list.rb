@@ -40,7 +40,14 @@ class DoublyLinkedList
   end
 
   def shift
+    return if length == 0
 
+    shifted_value = head.next.value
+    head.next = head.next.next
+    head.next.prev = head
+
+    self.length -= 1
+    shifted_value
   end
 
   def insert_after
