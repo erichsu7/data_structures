@@ -50,10 +50,28 @@ class DoublyLinkedList
     shifted_value
   end
 
-  def insert_after
+  def insert_after(value, new_value)
+    return if length == 0
+
+    current_node = head.next
+    until current_node == tail
+      if current_node.value == value
+        node = Node.new(new_value, current_node.next, current_node)
+        current_node.next.prev = node
+        current_node.next = node
+
+        self.length += 1
+        return new_value
+      end
+
+      current_node = current_node.next
+    end
+
+    false
   end
 
   def insert_before
+    return if length == 0
   end
 
   def insert_at
