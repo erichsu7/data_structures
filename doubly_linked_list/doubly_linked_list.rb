@@ -31,6 +31,12 @@ class DoublyLinkedList
   end
 
   def unshift(value)
+    node = Node.new(value, head.next, head)
+    head.next.prev = node
+    head.next = node
+
+    self.length += 1
+    value
   end
 
   def shift
