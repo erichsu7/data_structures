@@ -1,23 +1,12 @@
 require_relative 'node'
 
 class LinkedList
-  attr_accessor :head, :tail
+  attr_accessor :head, :tail, :length
 
   def initialize
     @head = Node.new
     @tail = Node.new
-  end
-
-  def length
-    count = 0
-
-    current_node = head.next
-    until current_node.nil?
-      count += 1
-      current_node = current_node.next
-    end
-
-    count
+    @length = 0
   end
 
   def push(value)
@@ -31,6 +20,7 @@ class LinkedList
       @tail = node
     end
 
+    self.length +=1
     node.value
   end
 
@@ -55,6 +45,7 @@ class LinkedList
       @tail = prev_node
       prev_node.next = nil
 
+      self.length -= 1
       popped_node.value
     end
   end
@@ -69,6 +60,7 @@ class LinkedList
       @head = node
     end
 
+    self.length += 1
     node.value
   end
 
@@ -78,6 +70,7 @@ class LinkedList
       @head = node.next
     end
 
+    self.length -= 1
     node.value
   end
 
@@ -116,6 +109,7 @@ class LinkedList
       @tail = prev_node
     end
 
+    self.length -= 1
     current_node.value
   end
 
