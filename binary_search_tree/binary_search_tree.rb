@@ -85,7 +85,6 @@ class BinarySearchTree < BinaryTree
         return node.left
       else
         next_node = max_node(node.left)
-        puts "next_node: " + next_node.to_s
         node.value = next_node.value
         node.left = remove_helper(node.value, node.left)
       end
@@ -93,7 +92,4 @@ class BinarySearchTree < BinaryTree
 
     return node
   end
-
-
-
 end
