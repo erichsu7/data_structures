@@ -50,6 +50,22 @@ class MaxHeap
     return if array[idx] >= array[next_child_idx]
     array[idx], array[next_child_idx] = array[next_child_idx], array[idx]
     sift_down(next_child_idx)
+
+    nil
   end
 
+  def remove(idx)
+    return if idx < 0 || idx >= count
+
+    array[idx], array[count - 1] = array[count - 1], array[idx]
+    popped_value = array.pop
+    self.count -= 1
+    sift_up(idx)
+    sift_down(idx)
+
+    popped_value
+  end
+
+  def max
+  end
 end
