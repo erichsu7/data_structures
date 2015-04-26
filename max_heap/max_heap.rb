@@ -4,6 +4,7 @@ class MaxHeap
   def initialize(array = [])
     @array = array
     @count = array.length
+    heapify if count > 0
   end
 
   def get_left_child_idx(idx)
@@ -73,4 +74,16 @@ class MaxHeap
   def shift
     remove(0)
   end
+
+  private
+
+    def heapify
+      i = (count - 2) / 2
+      while i >= 0
+        sift_down(i)
+      end
+
+      self
+    end
+
 end
