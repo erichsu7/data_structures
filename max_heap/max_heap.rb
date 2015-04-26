@@ -39,4 +39,17 @@ class MaxHeap
     nil
   end
 
+  def sift_down(idx)
+    return if idx < 0 || idx > (count - 2) / 2
+    next_child_idx = get_left_child_idx(idx)
+    #Check if left child is within array limits and if it's less than the right child.
+    #Increment next_child_idx to that larger of children is swapped with element
+    if next_child_idx < count - 1 && array[next_child_idx] < array[next_child_idx + 1]
+      next_child_idx += 1
+    end
+    return if array[idx] >= array[next_child_idx]
+    array[idx], array[next_child_idx] = array[next_child_idx], array[idx]
+    sift_down(next_child_idx)
+  end
+
 end
