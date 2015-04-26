@@ -67,5 +67,10 @@ class MaxHeap
   end
 
   def max
+    array[0]
+  end
+
+  def shift
+    remove(0)
   end
 end
