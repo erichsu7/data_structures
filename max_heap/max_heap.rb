@@ -1,9 +1,9 @@
 class MaxHeap
   attr_accessor :array, :count
 
-  def initialize
-    @array = []
-    @count = 0
+  def initialize(array = [])
+    @array = array
+    @count = array.length
   end
 
   def get_left_child_idx(idx)
