@@ -81,6 +81,7 @@ class MaxHeap
       i = (count - 2) / 2
       while i >= 0
         sift_down(i)
+        i -= 1
       end
 
       self
