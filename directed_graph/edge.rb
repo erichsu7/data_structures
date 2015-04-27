@@ -1,9 +1,9 @@
 class Edge
-  attr_reader :from, :to, :weight
-  
-  def initialize(from, to, weight = 1)
-    @from = from
-    @to = to
+  attr_reader :from_value, :to_value, :weight
+
+  def initialize(from_value, to_value, weight = 1)
+    @from_value = from_value
+    @to_value = to_value
     @weight = weight
   end
 end
