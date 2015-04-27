@@ -7,8 +7,12 @@ class DirectedGraph
     @nodes = Hash.new([])
   end
 
-  def add_edge(from_value, to_value)
+  def add_edge(from_value, to_value, weight = 1)
+    return false if find_edge(from_value, to_value)
 
+    edge = Edge.new(from_value, to_value, weight)
+    nodes[from_value].edges << edge
+    true
   end
 
   def remove_edge
