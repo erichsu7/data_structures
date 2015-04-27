@@ -54,12 +54,33 @@ class DirectedGraph
 
   def traverse_depth_first_helper(start_value)
     current_node = nodes[start_value]
-    puts current_node.visited?
+    return unless current_node
     return [] if current_node.visited?
     result = [current_node.value]
     current_node.visit
     current_node.edges.each do |edge|
       result += traverse_depth_first_helper(edge.to_value)
+    end
+
+    result
+  end
+
+  def traverse_breadth_first(start_value)
+    unvisit_nodes
+    result = []
+    current_node = nodes[start_value]
+    return unless current_node
+    current_node.visit
+    queue = [current_node]
+    until queue.empty?
+      current_node = queue.shift
+      result << current_node.value
+      current_node.edges.each do |edge|
+        next_node = nodes[edge.to_value]
+        next if next_node.visited?
+        next_node.visit
+        queue << next_node
+      end
     end
 
     result
@@ -71,3 +92,22 @@ class DirectedGraph
     end
   end
 end
+
+dg = DirectedGraph.new
+(1..6).each { |num| dg.add_node(num)}
+dg.add_edge(1, 3)
+dg.add_edge(1, 5)
+dg.add_edge(3, 1)
+dg.add_edge(3, 2)
+dg.add_edge(3, 6)
+dg.add_edge(3, 5)
+dg.add_edge(2, 3)
+dg.add_edge(2, 6)
+dg.add_edge(6, 2)
+dg.add_edge(6, 4)
+dg.add_edge(6, 5)
+dg.add_edge(4, 3)
+dg.add_edge(4, 6)
+dg.add_edge(5, 1)
+dg.add_edge(5, 6)
+p dg.traverse_breadth_first(1)
