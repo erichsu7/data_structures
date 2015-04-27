@@ -45,4 +45,29 @@ class DirectedGraph
 
     nil
   end
+
+  def traverse_depth_first(start_value)
+    unvisit_nodes
+
+    traverse_depth_first_helper(start_value)
+  end
+
+  def traverse_depth_first_helper(start_value)
+    current_node = nodes[start_value]
+    puts current_node.visited?
+    return [] if current_node.visited?
+    result = [current_node.value]
+    current_node.visit
+    current_node.edges.each do |edge|
+      result += traverse_depth_first_helper(edge.to_value)
+    end
+
+    result
+  end
+
+  def unvisit_nodes
+    nodes.each do |value, node|
+      node.unvisit
+    end
+  end
 end

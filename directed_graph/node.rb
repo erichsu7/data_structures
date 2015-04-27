@@ -7,11 +7,15 @@ class Node
     @edges = []
   end
 
+  def visited?
+    visited
+  end
+
   def visit
-    visited = true
+    self.visited = true
   end
 
   def unvisit
-    visited = false
+    self.visited = false
   end
 end
