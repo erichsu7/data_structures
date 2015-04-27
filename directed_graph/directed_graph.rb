@@ -91,22 +91,3 @@ class DirectedGraph
     end
   end
 end
-
-dg = DirectedGraph.new
-dg.add_node(1114)
-dg.add_node(2114)
-dg.add_node(2505)
-dg.add_node(3114)
-dg.add_node(3604)
-dg.add_node(3304)
-dg.add_node(2506)
-dg.add_node(3214)
-dg.add_edge(1114, 2114)
-dg.add_edge(2114, 2505)
-dg.add_edge(2505, 2506)
-dg.add_edge(2506, 3214)
-dg.add_edge(2505, 3114)
-dg.add_edge(3114, 3304)
-dg.add_edge(3114, 3604)
-
-p dg.traverse_depth_first(1114)
