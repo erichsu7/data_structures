@@ -68,8 +68,7 @@ class DirectedGraph
   def traverse_breadth_first(start_value)
     unvisit_nodes
     result = []
-    current_node = nodes[start_value]
-    return unless current_node
+    return unless current_node = nodes[start_value]
     current_node.visit
     queue = [current_node]
     until queue.empty?
@@ -94,20 +93,20 @@ class DirectedGraph
 end
 
 dg = DirectedGraph.new
-(1..6).each { |num| dg.add_node(num)}
-dg.add_edge(1, 3)
-dg.add_edge(1, 5)
-dg.add_edge(3, 1)
-dg.add_edge(3, 2)
-dg.add_edge(3, 6)
-dg.add_edge(3, 5)
-dg.add_edge(2, 3)
-dg.add_edge(2, 6)
-dg.add_edge(6, 2)
-dg.add_edge(6, 4)
-dg.add_edge(6, 5)
-dg.add_edge(4, 3)
-dg.add_edge(4, 6)
-dg.add_edge(5, 1)
-dg.add_edge(5, 6)
-p dg.traverse_breadth_first(1)
+dg.add_node(1114)
+dg.add_node(2114)
+dg.add_node(2505)
+dg.add_node(3114)
+dg.add_node(3604)
+dg.add_node(3304)
+dg.add_node(2506)
+dg.add_node(3214)
+dg.add_edge(1114, 2114)
+dg.add_edge(2114, 2505)
+dg.add_edge(2505, 2506)
+dg.add_edge(2506, 3214)
+dg.add_edge(2505, 3114)
+dg.add_edge(3114, 3304)
+dg.add_edge(3114, 3604)
+
+p dg.traverse_depth_first(1114)
